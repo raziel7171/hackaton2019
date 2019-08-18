@@ -12,5 +12,11 @@ package Clases;
  */
 public class CuentaOrganizacion
 {
+    private String nCuenta;
+    private String banco;
+    private String tipoCuenta;
+    private String titular;
+    
+    
     
 }

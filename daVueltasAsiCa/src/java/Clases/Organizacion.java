@@ -17,4 +17,5 @@ public class Organizacion
  private String dirreccion;
  private String email;
  private String razonSocial;
+ 
 }

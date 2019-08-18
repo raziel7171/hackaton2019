@@ -18,5 +18,24 @@ public class CuentaOrganizacion
     private String titular;
     
     
+    private void asignarBanco(){
+        
+    }
+
+    /**
+     * @return the titular
+     */
+    public String getTitular()
+    {
+        return titular;
+    }
+
+    /**
+     * @param titular the titular to set
+     */
+    public void setTitular(String titular)
+    {
+        this.titular = titular;
+    }
     
 }

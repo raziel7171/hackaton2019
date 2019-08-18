@@ -12,5 +12,30 @@ package Clases;
  */
 public class CuentaOrganizacion
 {
+    private String nCuenta;
+    private String banco;
+    private String tipoCuenta;
+    private String titular;
+    
+    
+    private void asignarBanco(){
+        
+    }
+
+    /**
+     * @return the titular
+     */
+    public String getTitular()
+    {
+        return titular;
+    }
+
+    /**
+     * @param titular the titular to set
+     */
+    public void setTitular(String titular)
+    {
+        this.titular = titular;
+    }
     
 }

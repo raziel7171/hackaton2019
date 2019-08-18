@@ -12,6 +12,7 @@ import java.util.Date;
  * @author kevin
  */
 public class Tarjeta {
+
     private String Nro;
     private Date Fecha_Expedicion;
     private Date Fecha_Vencimiento;
@@ -23,9 +24,14 @@ public class Tarjeta {
         this.Fecha_Vencimiento = Fecha_Vencimiento;
         this.TipoDeCuenta = TipoDeCuenta;
     }
-   
-    public boolean Vencida(){
-        return true;
+
+    public boolean VerificarTarjeta() {
+        boolean vencida = false;
+        Date fecha = new Date();
+        if ((fecha.getTime() - Fecha_Vencimiento.getTime()) > 0) {
+            vencida = true;
+        }
+        return vencida;
     }
 
     /**
@@ -62,6 +68,5 @@ public class Tarjeta {
     public void setTipoDeCuenta(String TipoDeCuenta) {
         this.TipoDeCuenta = TipoDeCuenta;
     }
-    
-    
+
 }

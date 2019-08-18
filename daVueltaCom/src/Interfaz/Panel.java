@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Entities.Establecimiento;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,6 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -27,30 +30,40 @@ public class Panel extends javax.swing.JPanel
 {
 
     JButton boton = new JButton();
+    JButton guardar = new JButton();
     JLabel texto = new JLabel();
-    
+    JTextField areaField[] = new JTextField[5];
+    JLabel enunciados[] = new JLabel[5];
+
     Color colorFondo = new Color(76, 171, 133);
-    Font fuente=new Font("Arial", Font.BOLD, 35);
-    
+    Font fuente = new Font("Arial", Font.BOLD, 35);
+
     int ancho = 640;
     int alto = 480;
     Image banner;
+    Establecimiento tienda;
+
+    boolean formulario;
 
     public Panel()
     {
         initComponents();
-        
+        configInicial();
+        //formulario = false;
+    }
+
+    public void configInicial()
+    {
         banner = new ImageIcon(getClass().getResource("/Sources/banner.png")).getImage();
-        
         texto.setFont(fuente);
-        texto.setText("DAVUELTASPUTO");
-        texto.setLocation(ancho/2-140, 15);
+        texto.setText("DAVUELTAS");
+        texto.setLocation(ancho / 2 - 110, 15);
         texto.setSize(360, 40);
 
         setSize(ancho, alto);
-        boton.setSize(180, 40);
-        boton.setLocation((ancho / 2) - 90, alto / 2 - 80);
         this.setBackground(colorFondo);
+
+        boton.setBounds((ancho / 2) - 90, alto / 2 - 80, 180, 40);
         boton.setBackground(Color.yellow);
         boton.setText("INGRESAR COMPRA");
         boton.addMouseListener(new MouseAdapter()
@@ -58,19 +71,90 @@ public class Panel extends javax.swing.JPanel
             @Override
             public void mouseClicked(MouseEvent me)
             {
-                JOptionPane.showMessageDialog(null, "Compra registrada");
+                JOptionPane.showMessageDialog(null, "Llene el siguiente formulario");
+                formulario();
+                boton.setVisible(false);
             }
-
         });
+
         this.add(texto);
         this.add(boton);
     }
 
-//    @Override
-//    protected void paintComponent(Graphics g)
-//    {
-//        g.drawImage(banner, 0, 0, this);
-//    }
+    public void formulario()
+    {
+        for (int i = 0; i < areaField.length; i++)
+        {
+            areaField[i] = new JTextField();
+            areaField[i].setBounds(ancho / 3, 100 + (30 * i), ancho / 2, 25);
+            this.add(areaField[i]);
+
+            enunciados[i] = new JLabel();
+            enunciados[i].setLocation(40, 100 + (30 * i));
+            enunciados[i].setSize(100, 25);
+            this.add(enunciados[i]);
+        }
+        enunciados[0].setText("Documento ");
+        enunciados[1].setText("Nombre ");
+        enunciados[2].setText("Dirección ");
+        enunciados[3].setText("Valor ");
+        enunciados[4].setText("Telefono ");
+
+        guardar = new JButton();
+        guardar.setBounds(40, 280, 180, 40);
+        guardar.setBackground(Color.yellow);
+        guardar.setText("GUARDAR DATOS");
+        this.add(guardar);
+        guardar.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent me)
+            {
+                recogerDatos();
+            }
+        });
+        repaint();
+    }
+
+    public void recogerDatos()
+    {
+        for (int i = 0; i < areaField.length; i++)
+        {
+            if ("".equals(areaField[i].getText()))
+            {
+                JOptionPane.showMessageDialog(null, "Falta un campo por llenar");
+                formulario = false;
+                break;
+            }
+        }
+        if (formulario)
+        {
+            guardar.disable();
+            for (int i = 0; i < areaField.length; i++)
+            {
+                areaField[i].disable();
+            }
+            if(tienda.agregarDonacion())
+                JOptionPane.showMessageDialog(null, "Donación registrada, queda pendiente de activación");
+            else
+                JOptionPane.showMessageDialog(null, "Su tarjeta no se encuentra activa");
+        }
+        formulario = true;
+    }
+
+    public MouseAdapter accionMouse()
+    {
+        return new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent me)
+            {
+                super.mouseClicked(me); //To change body of generated methods, choose Tools | Templates.
+
+            }
+
+        };
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,11 +170,11 @@ public class Panel extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

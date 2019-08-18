@@ -19,8 +19,15 @@ public class Cuenta {
     private String Ntarjeta;
     private LinkedList<Transaccion> Transacciones;
 
-    public Cuenta() {
+    public Cuenta(String Numer_Cuenta, float Saldo, String Titular, boolean EsOrganizacion, String Ntarjeta) {
+        this.Numer_Cuenta = Numer_Cuenta;
+        this.Saldo = Saldo;
+        this.Titular = Titular;
+        this.EsOrganizacion = EsOrganizacion;
+        this.Ntarjeta = Ntarjeta;
     }
+
+    
 
     /**
      * @return the Numer_Cuenta

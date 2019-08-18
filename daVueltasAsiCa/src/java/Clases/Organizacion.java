@@ -12,5 +12,9 @@ package Clases;
  */
 public class Organizacion
 {
-    
+ private String nit;
+ private String nombre;
+ private String dirreccion;
+ private String email;
+ private String razonSocial;
 }

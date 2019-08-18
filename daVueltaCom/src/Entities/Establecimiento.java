@@ -27,4 +27,6 @@ public class Establecimiento
     public boolean agregarDonacion(){
         return false;
     }
+
+  
 }

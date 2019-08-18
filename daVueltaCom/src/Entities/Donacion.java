@@ -26,7 +26,13 @@ public class Donacion
     
     public boolean verificarBenefactor(String documentoBenefactor){
         
-        return false;
+        return esBenefactor(documentoBenefactor);
+    }
+
+    private static Boolean esBenefactor(java.lang.String documento) {
+        Entities.CtrlControl_Service service = new Entities.CtrlControl_Service();
+        Entities.CtrlControl port = service.getCtrlControlPort();
+        return port.esBenefactor(documento);
     }
 
 }
